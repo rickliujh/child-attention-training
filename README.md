@@ -7,10 +7,10 @@ The program will give the standard time of the user of the age, and record the u
 you can see the results and results of each training, 
 as well as the performance statistics in a period of time.
 
-### notice
+### Notice
 
-**The software has not been developed yet. 
-If you want to test the software, please refer to the "How to Run" below.**
+The software has not been developed yet. 
+If you want to test the software, please refer to the "How to Run" below.
 
 ## ToDo List
 
@@ -25,7 +25,14 @@ If you want to test the software, please refer to the "How to Run" below.**
 
 ## How to Run
 
+### Installation dependency
+
 ```
 yarn install
+```
+
+### Run application
+
+```
 yarn electron:server
 ```
