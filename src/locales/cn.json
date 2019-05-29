@@ -1,0 +1,68 @@
+{
+  "Default": {
+    "navigation": {
+      "title": "导航",
+      "home": "主页",
+      "training": "训练",
+      "print": "打印",
+      "statistics": "统计",
+      "settings": "设置",
+      "about": "关于"
+    },
+    "essentialLinks": {
+      "title": "基本链接",
+      "docs": "文档",
+      "discordChatChannel": "聊天频道",
+      "forum": "论坛",
+      "twitter": "Twitter"
+    }
+  },
+  "Home": {
+    "title": "儿童注意力训练系统",
+    "subtitle": "使用您的电脑或打印测试题来增强孩子的注意力"
+  },
+  "Training": {
+    "info": "功能开发中..."
+  },
+  "Print": {
+    "info": "功能开发中..."
+  },
+  "Statistics": {
+    "info": "功能开发中..."
+  },
+  "Settings": {
+    "language": "语言"
+  },
+  "About": {
+    "aboutAuthor": {
+      "title": "关于作者",
+      "author": {
+        "title": "刘瑞琦 (Richard)",
+        "content": "大学在读，热爱编程、爬山"
+      },
+      "eMail": {
+        "title": "E-mail",
+        "content": "richard_y2019@163.com"
+      },
+      "github": {
+        "title": "GitHub",
+        "content": "https://github.com/R1chMillions"
+      }
+    },
+    "aboutProgram": {
+      "title": "关于程序",
+      "version": {
+        "title": "版本",
+        "content": "v - "
+      },
+      "introduction": {
+        "title": "介绍",
+        "content": "这个程序内置了很多有趣的训练帮助孩子们甚至是成人提高他们注意力。您可以选择在您的计算机上进行训练或在纸上打印（这有助于减少您孩子对电子设备的依赖），程序会给出该年龄使用者的标准时间，并记录使用者的成绩，您可以看到自己每次训练的成绩与结果，以及在一个时间段内的成绩统计，相信我，坚持使用软件，您的成绩一定会越来越好。"
+      }
+    },
+    "end": {
+      "say": "献给我未来的孩子们！",
+      "name": "作者"
+    }
+  }
+}

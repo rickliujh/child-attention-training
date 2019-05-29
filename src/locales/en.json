@@ -1,3 +1,68 @@
 {
-  "message": "hello i18n !!"
+  "Default": {
+    "navigation": {
+      "title": "Navigation",
+      "home": "Home",
+      "training": "Training",
+      "print": "Print",
+      "statistics": "Statistics",
+      "settings": "Settings",
+      "about": "About"
+    },
+    "essentialLinks": {
+      "title": "Essential Links",
+      "docs": "Docs",
+      "discordChatChannel": "Discord Chat Channel",
+      "forum": "Forum",
+      "twitter": "Twitter"
+    }
+  },
+  "Home": {
+    "title": "Child Attention Training System",
+    "subtitle": "Use your computer games or print test questions to increase your child’s attention"
+  },
+  "Training": {
+    "info": "In development..."
+  },
+  "Print": {
+    "info": "In development..."
+  },
+  "Statistics": {
+    "info": "In development..."
+  },
+  "Settings": {
+    "language": "Language"
+  },
+  "About": {
+    "aboutAuthor": {
+      "title": "About author",
+      "author": {
+        "title": "Richard",
+        "content": "Undergraduate reading, love programming, climbing."
+      },
+      "eMail": {
+        "title": "E-mail",
+        "content": "richard_y2019@163.com"
+      },
+      "github": {
+        "title": "GitHub",
+        "content": "https://github.com/R1chMillions"
+      }
+    },
+    "aboutProgram": {
+      "title": "About program",
+      "version": {
+        "title": "Version",
+        "content": "v - "
+      },
+      "introduction": {
+        "title": "Introduction",
+        "content": "This app has a lot of fun training built in to help kids and even adults improve their attention. You can choose to train on your computer or print on paper (this helps reduce your child's dependence on electronic devices) The program will give the standard time of the user of the age, and record the user's score, you can see the results and results of each training, as well as the performance statistics in a period of time, believe me, insist on using the software, you The results will definitely get better and better."
+      }
+    },
+    "end": {
+      "say": "Dedicated to my future children!",
+      "name": "The author."
+    }
+  }
 }
