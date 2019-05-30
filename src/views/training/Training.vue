@@ -1,15 +1,17 @@
 <template>
   <q-page padding>
-    <div class="q-mb-md q-display-3 q-display-3-opacity">
-      {{ $t("Training.info") }}
-    </div>
+    <schulte-grid-training></schulte-grid-training>
   </q-page>
 </template>
 
 <script>
+import SchulteGridTraining from './pages/SchulteGrid'
 export default {
-  name: "Training"
-};
+  name: 'Training',
+  components: {
+    SchulteGridTraining
+  }
+}
 </script>
 
 <style lang="stylus" scoped></style>
