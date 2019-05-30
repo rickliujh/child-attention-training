@@ -41,7 +41,7 @@ export default {
     updateWidth () {
       setTimeout(() => {
         this.clientWidth = this.$el.clientWidth
-      }, 1000)
+      }, 500)
     }
   },
   mounted () {

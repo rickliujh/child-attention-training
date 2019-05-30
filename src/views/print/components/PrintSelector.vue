@@ -78,76 +78,76 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 export default {
-  name: "PrintSelector",
-  data() {
+  name: 'PrintSelector',
+  data () {
     return {
-      printSelect: "",
+      printSelect: '',
       printOpts: [],
       countSelect: 81,
-      countOpts: Array.apply(null, { length: 24 }).map(function(_, index) {
-        let rowCount = index + 2;
+      countOpts: Array.apply(null, { length: 24 }).map(function (_, index) {
+        let rowCount = index + 2
         return {
           label: `${rowCount} × ${rowCount}`,
           value: rowCount * rowCount
-        };
+        }
       }),
       fontSizeSelect: 15,
-      fontSizeOpts: Array.apply(null, { length: 50 }).map(function(_, index) {
+      fontSizeOpts: Array.apply(null, { length: 50 }).map(function (_, index) {
         return {
           label: `${index + 1}`,
           value: index + 1
-        };
+        }
       }),
       isContinuous: false,
       isShowSystemPrintWindow: true
-    };
+    }
   },
   computed: {
-    ...mapState(["printerList"])
+    ...mapState(['printerList'])
   },
   watch: {
-    countSelect() {
-      this.handleCountChange();
+    countSelect () {
+      this.handleCountChange()
     },
-    fontSizeSelect() {
-      this.handleFontSizeChange();
+    fontSizeSelect () {
+      this.handleFontSizeChange()
     }
   },
   methods: {
-    handlePrintBtnClick() {
-      this.$emit("print", this.printSelect);
+    handlePrintBtnClick () {
+      this.$emit('print', this.printSelect)
     },
-    handleShuffleBtnClick() {
-      this.$emit("shuffle");
+    handleShuffleBtnClick () {
+      this.$emit('shuffle')
     },
-    handleContinuousChange(newVal) {
-      this.$emit("is-continuous", newVal);
+    handleContinuousChange (newVal) {
+      this.$emit('is-continuous', newVal)
     },
-    handleShowWindowChange(newVal) {
-      this.$emit("isShow-window", newVal);
+    handleShowWindowChange (newVal) {
+      this.$emit('isShow-window', newVal)
     },
-    handleCountChange() {
-      this.$emit("count-change", this.countSelect);
+    handleCountChange () {
+      this.$emit('count-change', this.countSelect)
     },
-    handleFontSizeChange() {
-      this.$emit("fontSize-change", this.fontSizeSelect);
+    handleFontSizeChange () {
+      this.$emit('fontSize-change', this.fontSizeSelect)
     }
   },
-  mounted() {
-    let res = [];
-    let list = this.printerList;
+  mounted () {
+    let res = []
+    let list = this.printerList
     for (const key in list) {
       res[key] = {
         label: this.printerList[key].name,
         value: this.printerList[key].name
-      };
+      }
     }
-    this.printOpts = res;
-    this.printSelect = res[0].value;
+    this.printOpts = res
+    this.printSelect = res[0].value
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>

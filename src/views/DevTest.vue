@@ -1,90 +1,37 @@
 <template>
-  <q-page padding class="row items-start" v-show="false">
-    <print-preview class="col" :arr="cells" :fontSize="fontSize"></print-preview>
-    <print-selector
-      class="col-4"
-      @shuffle="handleShuffle"
-      @print="handlePrint"
-      @is-continuous="handleIsContinuous"
-      @isShow-window="handleIsShowWindow"
-      @count-change="handleCountChange"
-      @fontSize-change="handleFontSizeChange"
-    ></print-selector>
-    <print-printer :arr="cells" :fontSize="fontSize" ref="printer"></print-printer>
+  <q-page padding class="row items-start" v-show="true">
+    <!-- <grid-view :grid="cells"></grid-view> -->
+    <control-panel class="col-4"></control-panel>
   </q-page>
 </template>
 
 <script>
-import _ from 'underscore'
-import PrintSelector from './print/components/PrintSelector'
-import PrintPreview from './print/components/Preview'
-import PrintPrinter from './print/components/Printer'
+// import _ from 'underscore'
+// import GridView from './training/components/GridView'
+import ControlPanel from './training/components/ControlPanel'
 
 export default {
   name: 'DevTest',
   components: {
-    PrintSelector,
-    PrintPreview,
-    PrintPrinter
+    // GridView,
+    ControlPanel
   },
   data () {
     return {
-      cells: this.getCells(81, this.noContinuous),
-      count: 81,
-      fontSize: 15,
-      isContinous: false,
-      isShowWindow: true
-    }
-  },
-  methods: {
-    getCells (count, callback) {
-      let rowCount = Math.sqrt(count)
-      return Array.apply(null, { length: count }).map(function (_, index) {
+      cells: Array.apply(null, { length: 25 }).map((_, index) => {
         return {
           id: index,
-          number: callback(index, rowCount)
+          label: index + 1
         }
       })
-    },
-    noContinuous (index, rowCount) {
-      return (index % rowCount) + 1
-    },
-    continuous (index) {
-      return index + 1
-    },
-    handleShuffle () {
-      this.cells = _.shuffle(this.cells)
-    },
-    handleIsContinuous (flag) {
-      if (this.isContinous === flag) {
-        return
-      }
-      this.isContinous = flag
-      if (flag) {
-        this.cells = this.getCells(this.cells.length, this.continuous)
-      } else {
-        this.cells = this.getCells(this.cells.length, this.noContinuous)
-      }
-    },
-    handlePrint (printDeviceName) {
-      this.$refs.printer.print(this.isShowWindow, printDeviceName)
-    },
-    handleIsShowWindow (flag) {
-      console.log(flag)
-      this.isShowWindow = flag
-    },
-    handleCountChange (newVal) {
-      this.count = newVal
-      if (this.isContinous) {
-        this.cells = this.getCells(newVal, this.continuous)
-      } else {
-        this.cells = this.getCells(newVal, this.noContinuous)
-      }
-      this.handleShuffle()
-    },
-    handleFontSizeChange (newVal) {
-      this.fontSize = newVal
     }
-  }
+  },
+  methods: {}
 }
 </script>
+
+<style lang="stylus" scoped>
+.my-card
+  width 100%
+  max-width 250px
+</style>
