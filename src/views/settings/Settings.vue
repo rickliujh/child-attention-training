@@ -16,36 +16,36 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations } from 'vuex'
 export default {
-  name: "Settings",
-  data() {
+  name: 'Settings',
+  data () {
     return {
       select: this.$i18n.locale,
       selectOptions: [
         {
-          label: "English(US)",
-          value: "en"
+          label: 'English(US)',
+          value: 'en'
         },
         {
-          label: "简体中文",
-          value: "cn"
+          label: '简体中文',
+          value: 'cn'
         }
       ]
-    };
+    }
   },
   methods: {
-    ...mapMutations(["changeTitle"])
+    ...mapMutations(['changeHeaderTitle'])
   },
   watch: {
-    select(newValue, oldValue) {
+    select (newValue, oldValue) {
       if (newValue !== oldValue) {
-        this.$i18n.locale = newValue;
-        this.changeTitle(this.$t("Default.navigation.settings"));
+        this.$i18n.locale = newValue
+        this.changeHeaderTitle(this.$t('Default.navigation.settings'))
       }
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>

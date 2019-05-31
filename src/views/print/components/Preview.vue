@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'PrintPreview',
   props: {
@@ -19,6 +20,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['leftDrawerOpen']),
     contentSize () {
       return {
         width: this.clientWidth,
@@ -35,6 +37,11 @@ export default {
         height: lenghtStr,
         'font-size': fontSizeStr
       }
+    }
+  },
+  watch: {
+    leftDrawerOpen () {
+      this.updateWidth()
     }
   },
   methods: {

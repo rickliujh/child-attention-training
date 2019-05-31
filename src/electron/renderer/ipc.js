@@ -21,3 +21,15 @@ export const getPrinterList = async () => {
 export const getPackageInfo = () => {
   return require('../../../package.json')
 }
+
+export const MainWindowManager = {
+  closeMainWindow () {
+    ipcRenderer.send(events.EVENT_CLOSE_WINDOW)
+  },
+  maximizeMainWindow () {
+    ipcRenderer.send(events.EVENT_TOGGLE_MAXIMIZE_WINDOW)
+  },
+  minimizeMainWindow () {
+    ipcRenderer.send(events.EVENT_MIXIMIZE_WINDOW)
+  }
+}

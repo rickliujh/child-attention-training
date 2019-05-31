@@ -7577,10 +7577,10 @@ qs@~6.5.2:
   resolved "https://registry.npm.taobao.org/qs/download/qs-6.5.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fqs%2Fdownload%2Fqs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha1-yzroBuh0BERYTvFUzo7pjUA/PjY=
 
-quasar@^1.0.0-beta.1:
-  version "1.0.0-rc.3"
-  resolved "https://registry.npm.taobao.org/quasar/download/quasar-1.0.0-rc.3.tgz#3bcdcd27a58af4c4184bdc0f050e225f143e3ae2"
-  integrity sha1-O83NJ6WK9MQYS9wPBQ4iXxQ+OuI=
+quasar@^1.0.0-beta.4:
+  version "1.0.0-rc.4"
+  resolved "https://registry.npm.taobao.org/quasar/download/quasar-1.0.0-rc.4.tgz#a5363434e516d75035ef9eaf1b7210493013a84b"
+  integrity sha1-pTY0NOUW11A1756vG3IQSTATqEs=
 
 query-string@^5.0.1:
   version "5.1.1"

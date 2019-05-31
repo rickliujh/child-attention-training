@@ -25,7 +25,10 @@ import {
   QToggle,
   QField,
   QCard,
-  QCardSection
+  QCardSection,
+  QBar,
+  QSpace,
+  QScrollArea
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -48,7 +51,10 @@ Vue.use(Quasar, {
     QToggle,
     QField,
     QCard,
-    QCardSection
+    QCardSection,
+    QBar,
+    QSpace,
+    QScrollArea
   },
   directives: {
   },

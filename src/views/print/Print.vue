@@ -1,6 +1,8 @@
 <template>
-  <q-page padding>
-    <standard-training></standard-training>
+  <q-page>
+      <q-scroll-area class="absolute-top fit">
+        <standard-training class="q-pa-md"></standard-training>
+      </q-scroll-area>
   </q-page>
 </template>
 
