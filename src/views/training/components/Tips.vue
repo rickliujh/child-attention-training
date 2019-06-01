@@ -14,12 +14,27 @@
 <script>
 export default {
   name: 'Tips',
+  props: {
+    isReset: Boolean,
+    isRight: Boolean
+  },
   data () {
     return {
       tips: '请开始训练',
       cardCss: ['bg-grey', 'text-white'],
-      cardIcon: 'bar_chart',
-      cut: 1
+      cardIcon: 'bar_chart'
+    }
+  },
+  watch: {
+    isReset (newVal) {
+      this.reset()
+    },
+    isRight (newVal) {
+      if (newVal === true) {
+        this.right()
+      } else {
+        this.wrong()
+      }
     }
   },
   methods: {
@@ -27,34 +42,16 @@ export default {
       this.tips = '请开始训练'
       this.cardCss[0] = 'bg-grey'
       this.cardIcon = 'bar_chart'
-      this.cut++
     },
     right () {
       this.tips = '正确！'
       this.cardCss[0] = 'bg-blue'
       this.cardIcon = 'check'
-      this.cut++
     },
     wrong () {
       this.tips = '错误！'
       this.cardCss[0] = 'bg-red'
       this.cardIcon = 'close'
-      this.cut++
-    },
-    test () {
-      switch (this.cut % 3) {
-        case 0:
-          this.reset()
-          break
-        case 1:
-          this.right()
-          break
-        case 2:
-          this.wrong()
-          break
-        default:
-          break
-      }
     }
   }
 }

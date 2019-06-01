@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <q-scroll-area class="scroll fit">
+    <q-scroll-area class="absolute-top fit">
       <q-list padding class="q-ml-md">
         <q-item>
           <q-item-section>
@@ -45,10 +45,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.scroll
-  position absolute
-  top 0
-  height 100%
 
 .block
   margin-top 3%

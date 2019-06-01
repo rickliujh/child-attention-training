@@ -1,144 +1,87 @@
 <template>
-  <div class="page q-ma-md">
-    <div class="content" :style="contentStyle">
-      <transition-group name="cell" tag="div" class="sudoku-container">
-        <q-btn
-          class="cell"
-          :style="itemStyle"
-          flat
-          color="primary"
-          v-for="item of grid"
-          :key="item.id"
-          @click="handleGridClick(item.label)"
-        >
-          <span :style="itemFontSizeStyle">{{item.label}}</span>
-        </q-btn>
-      </transition-group>
-    </div>
+  <div class="row items-start absolute-top fit no-scroll">
+    <grid-view class="q-pa-md col" :grids="grids" @grid-click="handleGridClick"></grid-view>
+    <control-panel
+      class="q-pr-md col-3"
+      :isRight="isRight"
+      :isDone="isDone"
+      @grid-count-change="handleGridCountChange"
+      @start="handleStart"
+      @reset="handleReset"
+    ></control-panel>
   </div>
 </template>
 
 <script>
 import _ from 'underscore'
+import ControlPanel from '../components/ControlPanel'
+import GridView from '../components/GridView'
 export default {
   name: 'SchulteGridTraining',
+  components: {
+    ControlPanel,
+    GridView
+  },
   data () {
     return {
-      grid: Array.apply(null, { length: 25 }).map((_, index) => {
+      grids: this.getGrids(25),
+      nextValue: 1,
+      isRight: false,
+      isDone: true
+    }
+  },
+  methods: {
+    getGrids (count) {
+      return Array.apply(null, { length: count }).map(function (_, index) {
         return {
           id: index,
           label: index + 1
         }
-      }),
-      clientSize: {
-        width: 10,
-        height: 10
-      },
-      nextValue: 1
-    }
-  },
-  computed: {
-    contentSize () {
-      let mixSize =
-        this.clientSize.height > this.clientSize.width
-          ? this.clientSize.width
-          : this.clientSize.height
-      return mixSize
-    },
-    squareLength () {
-      let rowNum = Math.sqrt(25)
-      let squareLenght = (this.contentSize * 1.0) / rowNum
-      return squareLenght
-    },
-    contentStyle () {
-      let res = this.contentSize + 'px'
-      return {
-        width: res,
-        height: res
-      }
-    },
-    itemStyle () {
-      let lenghtStr = this.squareLength + 'px'
-      return {
-        width: lenghtStr,
-        height: lenghtStr
-      }
-    },
-    itemFontSizeStyle () {
-      let lenghtStr = this.squareLength / 2 + 'px'
-      return {
-        fontSize: lenghtStr
-      }
-    }
-  },
-  methods: {
-    updateWinSize () {
-      this.clientSize = {
-        width: this.$el.clientWidth,
-        height: this.$el.clientHeight
-      }
+      })
     },
     shuffle () {
-      this.grid = _.shuffle(this.grid)
+      this.grids = _.shuffle(this.grids)
     },
-    handleGridClick (clickValue) {
-      if (this.nextValue !== clickValue) {
-        console.log('wrong')
-        return
-      }
-      console.log('right')
-      this.nextValue++
-      if (this.nextValue > this.grid.length) {
-        console.log('done')
+    handleGridCountChange (value) {
+      this.grids = this.getGrids(value)
+      this.shuffle()
+    },
+    handleStart () {
+      this.nextValue = 1
+      this.isDone = false
+    },
+    handleReset () {
+      this.isRight = false
+      this.shuffle()
+      this.nextValue = 1
+      this.isDone = true
+    },
+    handleGridClick (value) {
+      if (this.isDone === true) { return }
+      if (value === this.nextValue) {
+        if (value === this.grids.length) {
+          this.isDone = true
+          return
+        }
+        this.isRight = true
+        this.nextValue++
+      } else {
+        this.isRight = false
       }
     }
   },
   mounted () {
-    window.addEventListener('resize', this.updateWinSize)
-    this.updateWinSize()
     this.shuffle()
-  },
-  beforeDestroy () {
-    window.removeEventListener('resize', this.updateWinSize)
   }
 }
 </script>
 
 <style lang="stylus" scoped>
 .page
-  overflow hidden
-  position absolute
-  left 0
-  right 0
-  top 0
-  bottom 0
-
-.content
-  display flex
-  align-items center
-  justify-content center
-  margin 0 auto
-
-.sudoku-container
-  display flex
-  flex-wrap wrap
-  overflow hidden
-  width 100%
-  height 0
-  padding-bottom 100%
-
-.cell
-  display flex
-  justify-content space-around
-  align-items center
-  border 1px solid #aaa
-  margin-right -1px
-  margin-bottom -1px
-  text-align center
-
-  .text
-    font-size 100%
-
-.cell-move
-  transition transform 1s
+  // overflow hidden
+  // position absolute
+  // left 0
+  // right 0
+  // top 0
+  // bottom 0
 </style>

@@ -25,7 +25,9 @@ export default {
     isShowBtn: {
       type: Boolean,
       default: false
-    }
+    },
+    timing: Boolean,
+    isReset: Boolean
   },
   data () {
     return {
@@ -36,6 +38,18 @@ export default {
       timer: 0,
       str: '00:00.0000',
       timestamp: 0
+    }
+  },
+  watch: {
+    timing (newVal) {
+      if (newVal === true) {
+        this.start()
+      } else {
+        this.stop()
+      }
+    },
+    isReset (newVal) {
+      this.reset()
     }
   },
   methods: {

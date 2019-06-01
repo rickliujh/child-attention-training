@@ -1,5 +1,5 @@
 <template>
-  <div class="page q-ma-md">
+  <div class="full-height">
     <div class="content" :style="contentStyle">
       <transition-group name="cell" tag="div" class="sudoku-container">
         <q-btn
@@ -7,7 +7,7 @@
           :style="itemStyle"
           flat
           color="primary"
-          v-for="item of grid"
+          v-for="item of grids"
           :key="item.id"
           @click="handleGridClick(item.label)"
         >
@@ -19,10 +19,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'GridView',
   props: {
-    grid: Array
+    grids: Array
   },
   data () {
     return {
@@ -33,6 +34,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['leftDrawerOpen']),
     contentSize () {
       let mixSize =
         this.clientSize.height > this.clientSize.width
@@ -41,7 +43,7 @@ export default {
       return mixSize
     },
     squareLength () {
-      let rowNum = Math.sqrt(25)
+      let rowNum = Math.sqrt(this.grids.length)
       let squareLenght = (this.contentSize * 1.0) / rowNum
       return squareLenght
     },
@@ -66,6 +68,11 @@ export default {
       }
     }
   },
+  watch: {
+    leftDrawerOpen () {
+      this.updateWinSize()
+    }
+  },
   methods: {
     updateWinSize () {
       setTimeout(() => {
@@ -76,7 +83,7 @@ export default {
       }, 500)
     },
     handleGridClick (clickValue) {
-      this.$$emit('grid-click', clickValue)
+      this.$emit('grid-click', clickValue)
     }
   },
   mounted () {
@@ -90,14 +97,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.page
-  overflow hidden
-  position absolute
-  left 0
-  right 0
-  top 0
-  bottom 0
-
 .content
   display flex
   align-items center

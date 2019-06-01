@@ -8,13 +8,13 @@
 
     <q-item>
       <q-item-section>
-        <timer></timer>
+        <timer :timing="isStart" :isReset="isReset"></timer>
       </q-item-section>
     </q-item>
 
     <q-item>
       <q-item-section>
-        <tips></tips>
+        <tips :isRight="isRight" :isReset="isReset"></tips>
       </q-item-section>
     </q-item>
 
@@ -22,7 +22,14 @@
 
     <q-item>
       <q-item-section>
-        <q-select label="方格数" v-model="countSelect" :options="countOpts" map-options emit-value>
+        <q-select
+          label="方格数"
+          v-model="countSelect"
+          :options="countOpts"
+          map-options
+          emit-value
+          @input="handleGridCountSelect"
+        >
           <template v-slot:before>
             <q-icon name="view_module"></q-icon>
           </template>
@@ -35,8 +42,21 @@
     <q-item>
       <q-item-section>
         <div>
-          <q-btn class="q-mr-sm" color="primary" icon="fitness_center" label="开始"/>
-          <q-btn flat class="q-mr-md text-weight-bold" style="color: #c10015;" label="重新开始"/>
+          <q-btn
+            class="q-mr-sm"
+            color="primary"
+            icon="fitness_center"
+            label="开始"
+            :disable="isDisableStartBtn"
+            @click="handleStartBtnClick"
+          />
+          <q-btn
+            flat
+            class="q-mr-md text-weight-bold"
+            style="color: #c10015;"
+            label="重置"
+            @click="handleResetBtnClick"
+          />
         </div>
       </q-item-section>
     </q-item>
@@ -52,6 +72,10 @@ export default {
     Timer,
     Tips
   },
+  props: {
+    isRight: Boolean,
+    isDone: Boolean
+  },
   data () {
     return {
       countSelect: 25,
@@ -61,7 +85,38 @@ export default {
           label: ` ${rowCount} × ${rowCount} `,
           value: rowCount * rowCount
         }
-      })
+      }),
+      isStart: false,
+      isReset: true,
+      isDisableStartBtn: false
+    }
+  },
+  watch: {
+    isDone (newVal) {
+      if (newVal === true) {
+        this.isStart = false
+      }
+    },
+    isRight (newVal) {
+      console.log(newVal)
+    }
+  },
+  methods: {
+    handleGridCountSelect (value) {
+      this.$emit('grid-count-change', value)
+    },
+    handleStartBtnClick () {
+      this.$emit('start')
+      this.isStart = true
+      this.isDisableStartBtn = true
+    },
+    handleResetBtnClick () {
+      this.$emit('reset')
+      setTimeout(() => {
+        this.isStart = false
+        this.isReset = !this.isReset
+        this.isDisableStartBtn = false
+      }, 50)
     }
   }
 }
