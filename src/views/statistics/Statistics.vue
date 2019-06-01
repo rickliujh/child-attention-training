@@ -8,8 +8,8 @@
 
 <script>
 export default {
-  name: "Statistics"
-};
+  name: 'Statistics'
+}
 </script>
 
 <style lang="stylus" scoped></style>

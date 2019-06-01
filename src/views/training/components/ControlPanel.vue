@@ -96,9 +96,6 @@ export default {
       if (newVal === true) {
         this.isStart = false
       }
-    },
-    isRight (newVal) {
-      console.log(newVal)
     }
   },
   methods: {

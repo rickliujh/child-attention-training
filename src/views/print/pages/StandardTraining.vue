@@ -54,10 +54,6 @@ export default {
     },
     handleShuffle () {
       this.cells = _.shuffle(this.cells)
-      console.log({
-        width: this.$el.clientWidth,
-        height: this.$el.clientHeight
-      })
     },
     handleIsContinuous (flag) {
       if (this.isContinous === flag) {
