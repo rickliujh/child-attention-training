@@ -9,22 +9,29 @@ let MainWindow
 
 export const MainWindowManager = {
   createWindow () {
-    // Create the browser window.
-    MainWindow = new BrowserWindow({
+    let options = {
       width: 800,
       height: 600,
-      titleBarStyle: 'hidden',
-      // frame: false,
       webPreferences: {
         nodeIntegration: true
       }
-    })
+    }
 
     if (process.env.WEBPACK_DEV_SERVER_URL) {
+      // Create the browser window.
+      MainWindow = new BrowserWindow(options)
+
       // Load the url of the dev server if in development mode
       MainWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+
       if (!process.env.IS_TEST) MainWindow.webContents.openDevTools()
     } else {
+      // Create a Frameless Window
+      options.frame = false
+
+      // Create the browser window.
+      MainWindow = new BrowserWindow(options)
+
       createProtocol('app')
       // Load the index.html when not in development
       MainWindow.loadURL('app://./index.html')
