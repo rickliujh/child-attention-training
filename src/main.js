@@ -28,7 +28,10 @@ import {
   QCardSection,
   QBar,
   QSpace,
-  QScrollArea
+  QScrollArea,
+  QCarousel,
+  QCarouselControl,
+  QCarouselSlide
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -54,7 +57,10 @@ Vue.use(Quasar, {
     QCardSection,
     QBar,
     QSpace,
-    QScrollArea
+    QScrollArea,
+    QCarousel,
+    QCarouselControl,
+    QCarouselSlide
   },
   directives: {
   },
