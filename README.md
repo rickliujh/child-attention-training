@@ -34,5 +34,5 @@ yarn install
 ### Run application
 
 ```
-yarn electron:server
+yarn electron:serve
 ```
