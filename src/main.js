@@ -31,7 +31,8 @@ import {
   QScrollArea,
   QCarousel,
   QCarouselControl,
-  QCarouselSlide
+  QCarouselSlide,
+  QResizeObserver
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -60,7 +61,8 @@ Vue.use(Quasar, {
     QScrollArea,
     QCarousel,
     QCarouselControl,
-    QCarouselSlide
+    QCarouselSlide,
+    QResizeObserver
   },
   directives: {
   },
