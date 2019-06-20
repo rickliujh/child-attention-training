@@ -1,4 +1,4 @@
-import { BrowserWindow } from 'electron'
+import { WindowManager } from './window'
 
 let winprints = null
 
@@ -6,43 +6,12 @@ function getBrowserWindowInstance () {
   if (winprints) {
     winprints.destroy()
   }
-  winprints = new BrowserWindow({
-    show: false,
-    webPreferences: {
-      // devTools: true,
-      webSecurity: false,
-      nodeIntegration: true
-    }
-  })
-  winprints.webContents.openDevTools()
+  winprints = WindowManager.createHideWindow()
+  // winprints.webContents.openDevTools()
   return winprints
 }
 
 export default {
-  openPrintPage (url) {
-    console.log(url)
-    getBrowserWindowInstance()
-    if (process.env.WEBPACK_DEV_SERVER_URL) {
-      console.log('dev')
-      winprints.loadURL(`file://${__dirname}/../public/test-div-table.html`)
-    } else {
-      console.log('pro')
-      winprints.loadURL('app://./test-div-table.html')
-    }
-    winprints.webContents.on('did-finish-load', () => {
-      this.printCurrentPage()
-    })
-  },
-  printCurrentPage () {
-    console.log('print do')
-    winprints.webContents.print(
-      { silent: false, printBackground: true },
-      success => {
-        console.log(success)
-        // winprints.webContents.close();
-      }
-    )
-  },
   printSquare (data) {
     let exJsStr = `window.document.querySelector(".sudoku-container").innerHTML = \`${data.HTML}\``
     getBrowserWindowInstance()
@@ -68,8 +37,10 @@ export default {
     })
   },
   getPrinterList () {
-    let windows = BrowserWindow.getAllWindows()
-    let list = windows[0].webContents.getPrinters()
+    let list = WindowManager
+      .getFirstWindow()
+      .webContents
+      .getPrinters()
     return list
   }
 }

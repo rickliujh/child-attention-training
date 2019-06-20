@@ -72,5 +72,23 @@ export const WindowManager = {
   getFirstWindow () {
     let windows = this.getWindows()
     return windows[0]
+  },
+  createWindow () {
+    return new BrowserWindow({
+      show: true,
+      webPreferences: {
+        webSecurity: false,
+        nodeIntegration: true
+      }
+    })
+  },
+  createHideWindow () {
+    return new BrowserWindow({
+      show: false,
+      webPreferences: {
+        webSecurity: false,
+        nodeIntegration: true
+      }
+    })
   }
 }
