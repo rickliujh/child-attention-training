@@ -1,14 +1,15 @@
 <template>
   <div class="row items-start absolute-top fit no-scroll">
     <grid-view class="q-pa-md col" :grids="grids" @grid-click="handleGridClick"></grid-view>
-    <control-panel
-      class="q-pr-md col-3"
-      :isRight="isRight"
-      :isDone="isDone"
-      @grid-count-change="handleGridCountChange"
-      @start="handleStart"
-      @reset="handleReset"
-    ></control-panel>
+    <q-scroll-area class="q-pr-md col-3 full-height">
+      <control-panel
+        :isRight="isRight"
+        :isDone="isDone"
+        @grid-count-change="handleGridCountChange"
+        @start="handleStart"
+        @reset="handleReset"
+      ></control-panel>
+    </q-scroll-area>
   </div>
 </template>
 
@@ -57,7 +58,9 @@ export default {
       this.isDone = true
     },
     handleGridClick (value) {
-      if (this.isDone === true) { return }
+      if (this.isDone === true) {
+        return
+      }
       if (value === this.nextValue) {
         if (value === this.grids.length) {
           this.isDone = true
