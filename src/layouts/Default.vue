@@ -181,7 +181,11 @@
 <script>
 import { openURL } from 'quasar'
 import { mapState, mapMutations } from 'vuex'
-import { getPrinterList, getPackageInfo, MainWindowManager } from '../electron/renderer/ipc'
+import {
+  getPrinterList,
+  getPackageInfo,
+  MainWindowManager
+} from '../electron/renderer/ipc'
 
 export default {
   name: 'LayoutDefault',
@@ -193,17 +197,11 @@ export default {
   computed: {
     ...mapState(['headerTitle'])
   },
-  watch: {
-    leftDrawerOpen () {
-      this.changeLeftDrawerOpen()
-    }
-  },
   methods: {
     openURL,
     ...mapMutations(['changeHeaderTitle']),
     ...mapMutations(['updatePrinterList']),
     ...mapMutations(['setVersion']),
-    ...mapMutations(['changeLeftDrawerOpen']),
     handlePageClick (pageTitle) {
       this.changeHeaderTitle(pageTitle)
       // this.leftDrawerOpen = false
