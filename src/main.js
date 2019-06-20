@@ -32,7 +32,12 @@ import {
   QCarousel,
   QCarouselControl,
   QCarouselSlide,
-  QResizeObserver
+  QResizeObserver,
+  QTabs,
+  QTab,
+  QTabPanels,
+  QTabPanel,
+  QSeparator
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -62,7 +67,12 @@ Vue.use(Quasar, {
     QCarousel,
     QCarouselControl,
     QCarouselSlide,
-    QResizeObserver
+    QResizeObserver,
+    QTabs,
+    QTab,
+    QTabPanels,
+    QTabPanel,
+    QSeparator
   },
   directives: {
   },

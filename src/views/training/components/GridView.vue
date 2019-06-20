@@ -68,7 +68,6 @@ export default {
   },
   methods: {
     onResize (size) {
-      console.log(size)
       this.clientSize = {
         width: size.width,
         height: size.height
