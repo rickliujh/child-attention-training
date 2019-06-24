@@ -26,6 +26,7 @@ import {
   QField,
   QCard,
   QCardSection,
+  QCardActions,
   QBar,
   QSpace,
   QScrollArea,
@@ -37,7 +38,13 @@ import {
   QTab,
   QTabPanels,
   QTabPanel,
-  QSeparator
+  QSeparator,
+  QTable,
+  QTh,
+  QTr,
+  QTd,
+  QDialog,
+  ClosePopup
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -61,6 +68,7 @@ Vue.use(Quasar, {
     QField,
     QCard,
     QCardSection,
+    QCardActions,
     QBar,
     QSpace,
     QScrollArea,
@@ -72,9 +80,15 @@ Vue.use(Quasar, {
     QTab,
     QTabPanels,
     QTabPanel,
-    QSeparator
+    QSeparator,
+    QTable,
+    QTh,
+    QTr,
+    QTd,
+    QDialog
   },
   directives: {
+    ClosePopup
   },
   plugins: {
   }
