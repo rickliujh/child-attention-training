@@ -11,8 +11,8 @@
           narrow-indicator
         >
           <q-tab name="schulte" label="舒尔特表格"/>
-          <q-tab name="schulte2" label="舒尔特表格2"/>
-          <q-tab name="schulte3" label="舒尔特表格3"/>
+          <q-tab name="schulte2" label="等待开发"/>
+          <q-tab name="schulte3" label="等待开发"/>
         </q-tabs>
 
         <q-separator/>
@@ -23,11 +23,13 @@
           </q-tab-panel>
 
           <q-tab-panel name="schulte2">
-            <div class="text-h6">Schulte</div>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <div class="text-h6">开发中</div>
+            更多功能敬请期待...
           </q-tab-panel>
 
           <q-tab-panel name="schulte3">
-            <div class="text-h6">Schulte</div>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <div class="text-h6">开发中</div>
+            更多功能敬请期待...
           </q-tab-panel>
         </q-tab-panels>
       </q-card>

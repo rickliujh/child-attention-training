@@ -6,7 +6,11 @@
         <h4 class="text-h4 text-center text-grey-5">完成5次训练来获取数据</h4>
       </div>
       <div class="index q-pb-md" v-if="isShow">
-        <div class="index-item" style="border-left-color: #1890FF;" @click="er = true">
+        <div
+          class="index-item cursor-pointer"
+          style="border-left-color: #1890FF;"
+          @click="er = true"
+        >
           <div class="index-item-name">工作效率（ER）</div>
           <div class="index-item-value">99</div>
 
@@ -30,7 +34,11 @@
             </q-card>
           </q-dialog>
         </div>
-        <div class="index-item" style="border-left-color: #2FC25B;" @click="bp = true">
+        <div
+          class="index-item cursor-pointer"
+          style="border-left-color: #2FC25B;"
+          @click="bp = true"
+        >
           <div class="index-item-name">可加工性（BP）</div>
           <div class="index-item-value">99</div>
           <q-dialog v-model="bp" persistent transition-show="scale" transition-hide="scale">
@@ -53,7 +61,11 @@
             </q-card>
           </q-dialog>
         </div>
-        <div class="index-item" style="border-left-color: #FACC14;" @click="pu = true">
+        <div
+          class="index-item cursor-pointer"
+          style="border-left-color: #FACC14;"
+          @click="pu = true"
+        >
           <div class="index-item-name">心理稳定性（PU）</div>
           <div class="index-item-value">99</div>
           <q-dialog v-model="pu" persistent transition-show="scale" transition-hide="scale">
@@ -104,6 +116,7 @@
 
 <script>
 import G2 from '@antv/g2'
+import Dp from '../../../electron/renderer/persistence'
 export default {
   name: 'SchulteStatistic',
   data () {
@@ -249,6 +262,28 @@ export default {
     }
   },
   mounted () {
+    let time = Date.now()
+    let data = [{
+      time: '37.9',
+      wrong: 10
+    },
+    {
+      time: '23',
+      wrong: 22
+    },
+    {
+      time: '24',
+      wrong: 20
+    },
+    {
+      time: '30',
+      wrong: 26
+    },
+    {
+      time: '25',
+      wrong: 20
+    }]
+    Dp.writeData(time, data)
     this.renderEcChart()
   }
 }
