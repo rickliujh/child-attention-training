@@ -12,7 +12,7 @@
           @click="er = true"
         >
           <div class="index-item-name">工作效率（ER）</div>
-          <div class="index-item-value">99</div>
+          <div class="index-item-value">{{erVal}}</div>
 
           <q-dialog v-model="er" persistent transition-show="scale" transition-hide="scale">
             <q-card class="bg-primary text-white" style="width: 300px">
@@ -40,7 +40,7 @@
           @click="bp = true"
         >
           <div class="index-item-name">可加工性（BP）</div>
-          <div class="index-item-value">99</div>
+          <div class="index-item-value">{{bpVal}}</div>
           <q-dialog v-model="bp" persistent transition-show="scale" transition-hide="scale">
             <q-card class="bg-positive text-white" style="width: 300px">
               <q-card-section>
@@ -67,7 +67,7 @@
           @click="pu = true"
         >
           <div class="index-item-name">心理稳定性（PU）</div>
-          <div class="index-item-value">99</div>
+          <div class="index-item-value">{{puVal}}</div>
           <q-dialog v-model="pu" persistent transition-show="scale" transition-hide="scale">
             <q-card class="bg-warning text-white" style="width: 300px">
               <q-card-section>
@@ -116,7 +116,7 @@
 
 <script>
 import G2 from '@antv/g2'
-import Dp from '../../../electron/renderer/persistence'
+import { DataManager } from '../../../electron/renderer/data'
 export default {
   name: 'SchulteStatistic',
   data () {
@@ -124,8 +124,11 @@ export default {
       chart: null,
       isShow: true,
       er: false,
+      erVal: 0,
       bp: false,
+      bpVal: 0,
       pu: false,
+      puVal: 0,
       ERTableColumns: [
         {
           name: 'age',
@@ -161,27 +164,27 @@ export default {
       ERTableData: [
         {
           age: '10年',
-          five: '45岁以下',
+          five: '45以下',
           four: '46-55',
           three: '56-65',
           two: '66-75',
-          one: '76岁以上'
+          one: '76以上'
         },
         {
           age: '11年',
-          five: '35岁以下',
+          five: '35以下',
           four: '36-45',
           three: '46-55',
           two: '56-65',
-          one: '66岁以上'
+          one: '66以上'
         },
         {
           age: '12年',
-          five: '30岁以下',
+          five: '30以下',
           four: '31-35',
           three: '36-45',
           two: '46-55',
-          one: '56岁以上'
+          one: '56以上'
         }
       ]
     }
@@ -190,30 +193,7 @@ export default {
     onResize (size) {
       this.chart.forceFit()
     },
-    renderEcChart () {
-      var data = [
-        {
-          time: '37.9',
-          wrong: 10
-        },
-        {
-          time: '23',
-          wrong: 22
-        },
-        {
-          time: '24',
-          wrong: 20
-        },
-        {
-          time: '30',
-          wrong: 26
-        },
-        {
-          time: '25',
-          wrong: 20
-        }
-      ]
-
+    renderEcChart (data) {
       this.chart = new G2.Chart({
         container: 'exhausting-curve',
         width: 200,
@@ -259,32 +239,26 @@ export default {
           lineWidth: 1
         })
       this.chart.render()
+    },
+    renderPage (data) {
+      this.renderEcChart(data)
+
+      let sum = 0; let t1 = data[0].time; let t4 = data[3].time
+
+      for (const key in data) {
+        sum += parseFloat(data[key].time)
+      }
+
+      this.erVal = (sum / data.length).toFixed(2)
+      this.bpVal = (t1 / this.erVal).toFixed(2)
+      this.puVal = (t4 / this.erVal).toFixed(2)
     }
   },
   mounted () {
-    let time = Date.now()
-    let data = [{
-      time: '37.9',
-      wrong: 10
-    },
-    {
-      time: '23',
-      wrong: 22
-    },
-    {
-      time: '24',
-      wrong: 20
-    },
-    {
-      time: '30',
-      wrong: 26
-    },
-    {
-      time: '25',
-      wrong: 20
-    }]
-    Dp.writeData(time, data)
-    this.renderEcChart()
+    let dm = new DataManager()
+    this.ecChartData = dm
+      .readData()
+      .then((data) => this.renderPage(data))
   }
 }
 </script>
