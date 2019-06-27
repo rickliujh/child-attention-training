@@ -38,10 +38,10 @@
   dependencies:
     "@antv/util" "~1.3.1"
 
-"@antv/g2@^3.5.8-beta.1":
-  version "3.5.8-beta.1"
-  resolved "https://registry.npm.taobao.org/@antv/g2/download/@antv/g2-3.5.8-beta.1.tgz#71ba5b065ce513be916ceca258d2a02e1ea8e441"
-  integrity sha1-cbpbBlzlE76RbOyiWNKgLh6o5EE=
+"@antv/g2@^3.5.7":
+  version "3.5.7"
+  resolved "https://registry.npm.taobao.org/@antv/g2/download/@antv/g2-3.5.7.tgz#b562a696546d3ec1baeff820f6be00521004fe94"
+  integrity sha1-tWKmllRtPsG67/gg9r4AUhAE/pQ=
   dependencies:
     "@antv/adjust" "~0.1.0"
     "@antv/attr" "~0.1.2"
@@ -7792,10 +7792,10 @@ qs@~6.5.2:
   resolved "https://registry.npm.taobao.org/qs/download/qs-6.5.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fqs%2Fdownload%2Fqs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha1-yzroBuh0BERYTvFUzo7pjUA/PjY=
 
-quasar@^1.0.0-beta.4:
-  version "1.0.0-rc.4"
-  resolved "https://registry.npm.taobao.org/quasar/download/quasar-1.0.0-rc.4.tgz#a5363434e516d75035ef9eaf1b7210493013a84b"
-  integrity sha1-pTY0NOUW11A1756vG3IQSTATqEs=
+quasar@^1.0.0-beta.5:
+  version "1.0.0-rc.5"
+  resolved "https://registry.npm.taobao.org/quasar/download/quasar-1.0.0-rc.5.tgz#4cff90df487aeaff11b28f96918e44aff742c97c"
+  integrity sha1-TP+Q30h66v8Rso+WkY5Er/dCyXw=
 
 query-string@^5.0.1:
   version "5.1.1"
