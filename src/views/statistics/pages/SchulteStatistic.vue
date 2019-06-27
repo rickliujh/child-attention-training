@@ -116,7 +116,7 @@
 
 <script>
 import G2 from '@antv/g2'
-import { DataManager } from '../../../electron/renderer/data'
+import { DataManager, DataType } from '../../../electron/renderer/data'
 export default {
   name: 'SchulteStatistic',
   data () {
@@ -195,7 +195,16 @@ export default {
         this.chart.forceFit()
       }
     },
+    canUseData (data) {
+      if (data === undefined || data.length < 5) {
+        this.isShow = false
+        return false
+      }
+      return true
+    },
     renderEcChart (data) {
+      if (!this.canUseData(data)) return
+
       this.chart = new G2.Chart({
         container: 'exhausting-curve',
         width: 200,
@@ -242,12 +251,8 @@ export default {
         })
       this.chart.render()
     },
-    renderPage (data) {
-      if (data === undefined || data.length < 5) {
-        this.isShow = false
-        return
-      }
-      this.renderEcChart(data)
+    renderIndicator (data) {
+      if (!this.canUseData(data)) return
 
       let sum = 0; let t1 = data[0].time; let t4 = data[3].time
 
@@ -262,9 +267,13 @@ export default {
   },
   mounted () {
     let dm = new DataManager()
+
+    dm.getSchultTableLastFive(DataType.SchulteTable)
+      .then((data) => this.renderIndicator(data))
+
     this.ecChartData = dm
-      .readData()
-      .then((data) => this.renderPage(data))
+      .getSchultTableToday()
+      .then((data) => this.renderEcChart(data))
   }
 }
 </script>
