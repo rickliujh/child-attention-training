@@ -10,11 +10,9 @@ export class DataManager {
   }
 
   async readData () {
-    return new Promise(async (resolve, reject) => {
-      let data = await this.dP.readData()
-      for (const key in data) {
-        resolve(data[key])
-      }
-    })
+    let data = await this.dP.readData()
+    for (const key in data) {
+      return data[key]
+    }
   }
 }

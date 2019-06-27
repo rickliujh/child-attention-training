@@ -191,7 +191,9 @@ export default {
   },
   methods: {
     onResize (size) {
-      this.chart.forceFit()
+      if (this.isShow && this.chart) {
+        this.chart.forceFit()
+      }
     },
     renderEcChart (data) {
       this.chart = new G2.Chart({
@@ -241,6 +243,10 @@ export default {
       this.chart.render()
     },
     renderPage (data) {
+      if (data === undefined || data.length < 5) {
+        this.isShow = false
+        return
+      }
       this.renderEcChart(data)
 
       let sum = 0; let t1 = data[0].time; let t4 = data[3].time
