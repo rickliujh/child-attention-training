@@ -196,7 +196,7 @@ export default {
       }
     },
     canUseData (data) {
-      if (data === undefined || data.length < 5) {
+      if (!data || data.length < 5) {
         this.isShow = false
         return false
       }

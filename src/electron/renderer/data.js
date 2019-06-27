@@ -15,6 +15,9 @@ export class DataManager {
 
   async getData (dataType = DataType.SchulteTable, callback) {
     let data = await this.dP.readData()
+
+    if (!data) return
+
     data = data[dataType]
     return callback(data)
   }

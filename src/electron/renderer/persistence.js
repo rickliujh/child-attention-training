@@ -16,6 +16,7 @@ export class DataPersistence {
   }
 
   async readData () {
+    if (!fs.existsSync(dataPath)) return null
     return new Promise((resolve, reject) => {
       fs.readFile(dataPath, { encoding: 'utf8' }, (err, data) => {
         if (err) reject(err)
