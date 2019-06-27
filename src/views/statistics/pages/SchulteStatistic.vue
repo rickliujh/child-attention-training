@@ -115,8 +115,8 @@
 </template>
 
 <script>
-import G2 from '@antv/g2'
 import { DataManager, DataType } from '../../../electron/renderer/data'
+
 export default {
   name: 'SchulteStatistic',
   data () {
@@ -204,6 +204,8 @@ export default {
     },
     renderEcChart (data) {
       if (!this.canUseData(data)) return
+
+      const G2 = require('@antv/g2')
 
       this.chart = new G2.Chart({
         container: 'exhausting-curve',
