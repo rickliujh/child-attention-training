@@ -105,6 +105,9 @@ export default {
       }, 3000)
     },
     saveTrainingData () {
+      // no save when reset
+      if (this.nextValue === 1) return
+
       const DM = new DataManager()
       DM.saveData(DataType.SchulteTable, {
         time: this.totalTime,
