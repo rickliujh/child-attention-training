@@ -20,5 +20,11 @@ yarn-error.log*
 *.sln
 *.sw?
 
-#Electron-builder output
+# Electron-builder output
 /dist_electron
+
+# App data
+data.json
+
+# package version standard
+.pkg-version-standard

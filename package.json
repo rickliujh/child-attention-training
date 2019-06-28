@@ -1,6 +1,6 @@
 {
   "name": "child-attention-training",
-  "version": "0.5.0",
+  "version": "0.5.3",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -14,11 +14,12 @@
   },
   "main": "background.js",
   "dependencies": {
-    "@antv/g2": "^3.5.7",
     "@quasar/extras": "^1.0.0",
     "core-js": "^2.6.5",
+    "echarts": "^4.2.1",
     "quasar": "^1.0.0-beta.5",
     "underscore": "^1.9.1",
+    "v-charts": "^1.19.0",
     "vue": "^2.6.10",
     "vue-i18n": "^8.0.0",
     "vue-router": "^3.0.3",

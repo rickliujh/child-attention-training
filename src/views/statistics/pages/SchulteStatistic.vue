@@ -108,7 +108,7 @@
       <div v-if="!isShow" class="q-pb-md">
         <h4 class="text-h4 text-center text-grey-5">完成5次训练来获取数据</h4>
       </div>
-      <div id="exhausting-curve" v-if="isShow"></div>
+      <ve-line class="q-pa-md" v-if="isShow" :width="chartWidth" :data="chartData" :settings="chartSettings"></ve-line>
       <q-resize-observer @resize="onResize"></q-resize-observer>
     </div>
   </div>
@@ -116,12 +116,26 @@
 
 <script>
 import { DataManager, DataType } from '../../../electron/renderer/data'
+import VeLine from 'v-charts/lib/line.common'
 
 export default {
   name: 'SchulteStatistic',
+  components: {
+    VeLine
+  },
   data () {
+    this.chartSettings = {
+      labelMap: {
+        'time': '花费时间',
+        'wrong': '错误次数'
+      },
+      legendName: {
+        '错误次数': '疲劳曲线'
+      },
+      xAxisType: ['value'],
+      yAxisName: ['次', '秒']
+    }
     return {
-      chart: null,
       isShow: true,
       er: false,
       erVal: 0,
@@ -129,6 +143,8 @@ export default {
       bpVal: 0,
       pu: false,
       puVal: 0,
+      chartData: {},
+      chartWidth: '200px',
       ERTableColumns: [
         {
           name: 'age',
@@ -191,9 +207,7 @@ export default {
   },
   methods: {
     onResize (size) {
-      if (this.isShow && this.chart) {
-        this.chart.forceFit()
-      }
+      this.chartWidth = size.width - 30 + 'px'
     },
     canUseData (data) {
       if (!data || data.length < 5) {
@@ -205,53 +219,10 @@ export default {
     renderEcChart (data) {
       if (!this.canUseData(data)) return
 
-      const G2 = require('@antv/g2')
-
-      this.chart = new G2.Chart({
-        container: 'exhausting-curve',
-        width: 200,
-        height: 300
-      })
-
-      var defs = {
-        time: {
-          type: 'linear',
-          alias: '花费时间',
-          formatter (val) {
-            return val + 's'
-          }
-        },
-        wrong: {
-          type: 'linear',
-          alias: '错误次数'
-        }
+      this.chartData = {
+        columns: ['time', 'wrong'],
+        rows: data
       }
-      this.chart.source(data, defs)
-      this.chart.tooltip({
-        showTitle: true
-      })
-
-      // this.chart.axis('time', {
-      //   label: {
-      //     formatter (val) {
-      //       return val + 's'
-      //     }
-      //   }
-      // })
-
-      this.chart
-        .line()
-        .position('time*wrong')
-        .shape('smooth')
-      this.chart
-        .point()
-        .position('time*wrong')
-        .shape('smooth')
-        .style({
-          stroke: '#fff',
-          lineWidth: 1
-        })
-      this.chart.render()
     },
     renderIndicator (data) {
       if (!this.canUseData(data)) return
