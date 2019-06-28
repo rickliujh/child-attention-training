@@ -29,7 +29,10 @@ export class DataManager {
 
       // read last 5 object
       for (let i = 1; i <= 5; i++) {
-        res.push(data[keys[keys.length - i]])
+        let item = data[keys[keys.length - i]]
+        if (!item) break
+
+        res.push(item)
       }
 
       return res

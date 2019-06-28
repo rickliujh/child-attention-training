@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { remote } from 'electron'
 
-const dataPath = path.join(remote.app.getAppPath(), '/data.json')
+const dataPath = path.join(remote.app.getAppPath(), '/../data.json')
 
 export class DataPersistence {
   async writeFile (data) {
