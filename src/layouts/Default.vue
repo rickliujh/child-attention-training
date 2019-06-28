@@ -29,7 +29,15 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" elevated content-class="bg-grey-3" :breakpoint="500">
+    <q-drawer
+      v-model="leftDrawerOpen"
+      behavior="desktop"
+      @click.capture="drawerClick"
+      content-class="bg-grey-3"
+      :breakpoint="500"
+      :mini="!leftDrawerOpen || miniState"
+      show-if-above
+    >
       <q-scroll-area class="fit">
         <q-list>
           <q-item-label header>{{ $t("Default.navigation.title") }}</q-item-label>
@@ -170,6 +178,16 @@
           </q-item>-->
         </q-list>
       </q-scroll-area>
+      <div class="q-mini-drawer-hide absolute" style="top: 55px; right: -17px">
+          <q-btn
+            dense
+            round
+            unelevated
+            color="indigo"
+            icon="chevron_left"
+            @click="miniState = true"
+          />
+        </div>
     </q-drawer>
 
     <q-page-container>
@@ -191,7 +209,8 @@ export default {
   name: 'LayoutDefault',
   data () {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop
+      leftDrawerOpen: this.$q.platform.is.desktop,
+      miniState: false
     }
   },
   computed: {
@@ -214,6 +233,18 @@ export default {
     },
     closeWindow () {
       MainWindowManager.closeMainWindow()
+    },
+    drawerClick (e) {
+      // if in "mini" state and user
+      // click on drawer, we switch it to "normal" mode
+      if (this.miniState) {
+        this.miniState = false
+
+        // notice we have registered an event with capture flag;
+        // we need to stop further propagation as this click is
+        // intended for switching drawer to "normal" mode only
+        e.stopPropagation()
+      }
     }
   },
   created () {
