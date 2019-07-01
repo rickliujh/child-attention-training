@@ -241,11 +241,10 @@ export default {
   mounted () {
     let dm = new DataManager()
 
-    dm.getSchultTableLastFive(DataType.SchulteTable)
+    dm.getSchultTableLastFive()
       .then((data) => this.renderIndicator(data))
 
-    this.ecChartData = dm
-      .getSchultTableToday()
+    dm.getSchultTableToday()
       .then((data) => this.renderEcChart(data))
   }
 }
