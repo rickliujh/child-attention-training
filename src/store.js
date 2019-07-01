@@ -7,8 +7,7 @@ export default new Vuex.Store({
   state: {
     headerTitle: '',
     printerList: [],
-    version: '',
-    leftDrawerOpen: false
+    version: ''
   },
   mutations: {
     changeHeaderTitle (stale, headerTitle) {
@@ -19,9 +18,6 @@ export default new Vuex.Store({
     },
     setVersion (stale, version) {
       stale.version = version
-    },
-    changeLeftDrawerOpen (stale) {
-      stale.leftDrawerOpen = !stale.leftDrawerOpen
     }
   },
   actions: {}

@@ -16,9 +16,9 @@ If you want to test the software, please refer to the "How to Run" below.
 
 1. <del>Write a nice UI</del>
 2. Globalization
-3. <del>Ability to print practice questions</del>
-4. <del>Able to train on the computer</del>
-5. Ability to record practice data
+3. <del>Ability to print practice questions<del>
+4. <del>Able to train on the computer<del>
+5. <del>Ability to record continuous data<del>
 6. Ability to analyze practice data
 7. Good instructions and tips for each exercise
 
@@ -35,4 +35,10 @@ yarn install
 
 ```
 yarn electron:serve
+```
+
+### Build application
+
+```
+yarn electron:build
 ```

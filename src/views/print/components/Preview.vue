@@ -1,13 +1,15 @@
 <template>
-  <div class="content" :style="contentSize">
-    <transition-group name="cell" tag="div" class="sudoku-container">
-      <div class="cell" :style="itemSize" v-for="item in arr" :key="item.id">{{ item.number }}</div>
-    </transition-group>
+  <div>
+    <div class="content" :style="contentSize">
+      <transition-group name="cell" tag="div" class="sudoku-container">
+        <div class="cell" :style="itemSize" v-for="item in arr" :key="item.id">{{ item.number }}</div>
+      </transition-group>
+    </div>
+    <q-resize-observer @resize="onResize"></q-resize-observer>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   name: 'PrintPreview',
   props: {
@@ -20,7 +22,6 @@ export default {
     }
   },
   computed: {
-    ...mapState(['leftDrawerOpen']),
     contentSize () {
       return {
         width: this.clientWidth,
@@ -39,24 +40,10 @@ export default {
       }
     }
   },
-  watch: {
-    leftDrawerOpen () {
-      this.updateWidth()
-    }
-  },
   methods: {
-    updateWidth () {
-      setTimeout(() => {
-        this.clientWidth = this.$el.clientWidth
-      }, 500)
+    onResize (size) {
+      this.clientWidth = size.width
     }
-  },
-  mounted () {
-    window.addEventListener('resize', this.updateWidth)
-    this.updateWidth()
-  },
-  beforeDestroy () {
-    window.removeEventListener('resize', this.updateWidth)
   }
 }
 </script>

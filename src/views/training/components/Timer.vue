@@ -83,6 +83,7 @@ export default {
       // 重置
       clearInterval(this.timer)
       // this.h = 0
+      this.timestamp = 0
       this.m = 0
       this.ms = 0
       this.s = 0

@@ -15,11 +15,11 @@
         </q-btn>
       </transition-group>
     </div>
+    <q-resize-observer @resize="onResize"></q-resize-observer>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   name: 'GridView',
   props: {
@@ -34,12 +34,10 @@ export default {
     }
   },
   computed: {
-    ...mapState(['leftDrawerOpen']),
     contentSize () {
       let mixSize =
         this.clientSize.height > this.clientSize.width
-          ? this.clientSize.width
-          : this.clientSize.height
+          ? this.clientSize.width : (this.clientSize.height - 25)
       return mixSize
     },
     squareLength () {
@@ -68,30 +66,16 @@ export default {
       }
     }
   },
-  watch: {
-    leftDrawerOpen () {
-      this.updateWinSize()
-    }
-  },
   methods: {
-    updateWinSize () {
-      setTimeout(() => {
-        this.clientSize = {
-          width: this.$el.clientWidth,
-          height: this.$el.clientHeight
-        }
-      }, 500)
+    onResize (size) {
+      this.clientSize = {
+        width: size.width,
+        height: size.height
+      }
     },
     handleGridClick (clickValue) {
       this.$emit('grid-click', clickValue)
     }
-  },
-  mounted () {
-    window.addEventListener('resize', this.updateWinSize)
-    this.updateWinSize()
-  },
-  beforeDestroy () {
-    window.removeEventListener('resize', this.updateWinSize)
   }
 }
 </script>

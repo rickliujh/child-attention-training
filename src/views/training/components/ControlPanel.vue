@@ -8,7 +8,7 @@
 
     <q-item>
       <q-item-section>
-        <timer :timing="isStart" :isReset="isReset"></timer>
+        <timer ref="timer" :timing="isStart" :isReset="isReset"></timer>
       </q-item-section>
     </q-item>
 
@@ -95,6 +95,9 @@ export default {
     isDone (newVal) {
       if (newVal === true) {
         this.isStart = false
+
+        let totalTime = this.$refs.timer.timestamp / 1000
+        this.$emit('total-time', totalTime)
       }
     }
   },

@@ -26,12 +26,25 @@ import {
   QField,
   QCard,
   QCardSection,
+  QCardActions,
   QBar,
   QSpace,
   QScrollArea,
   QCarousel,
   QCarouselControl,
-  QCarouselSlide
+  QCarouselSlide,
+  QResizeObserver,
+  QTabs,
+  QTab,
+  QTabPanels,
+  QTabPanel,
+  QSeparator,
+  QTable,
+  QTh,
+  QTr,
+  QTd,
+  QDialog,
+  ClosePopup
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -55,14 +68,27 @@ Vue.use(Quasar, {
     QField,
     QCard,
     QCardSection,
+    QCardActions,
     QBar,
     QSpace,
     QScrollArea,
     QCarousel,
     QCarouselControl,
-    QCarouselSlide
+    QCarouselSlide,
+    QResizeObserver,
+    QTabs,
+    QTab,
+    QTabPanels,
+    QTabPanel,
+    QSeparator,
+    QTable,
+    QTh,
+    QTr,
+    QTd,
+    QDialog
   },
   directives: {
+    ClosePopup
   },
   plugins: {
   }
